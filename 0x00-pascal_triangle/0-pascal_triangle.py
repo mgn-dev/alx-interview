@@ -3,13 +3,14 @@
 Module to generate Pascal's triangle.
 """
 
+
 def pascal_triangle(n):
     """Generate Pascal's triangle up to n rows."""
     if n <= 0:
         return []
 
     triangle = []
-    
+
     for i in range(n):
         row = [1] * (i + 1)  # Each row starts with 1s
         if i > 1:  # Update the internal values for rows greater than 2
