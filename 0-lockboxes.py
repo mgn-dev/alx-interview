@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+"""Module that implements a function to determine if all the boxes can be opened."""
+
 def canUnlockAll(boxes):
+    """method that determines if all the boxes can be opened."""
     n = len(boxes)  # Number of boxes
     unlocked = [False] * n  # Track whether each box can be unlocked
     unlocked[0] = True  # The first box is unlocked
@@ -17,8 +21,3 @@ def canUnlockAll(boxes):
 
     # Check if all boxes are unlocked
     return all(unlocked)
-
-
-# Example usage:
-boxes_example = [[1], [2], [3], []]
-print(canUnlockAll(boxes_example))  # Output: True
