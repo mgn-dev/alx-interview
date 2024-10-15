@@ -53,24 +53,25 @@ def minOperations(n):
              exactly n 'H' characters, or 0 if it is impossible.
     """
 
-     # Check for valid integer input
-    if not isinstance(n, int) or n < 0:
-        return 0
+     # Try to handle type validation for input n
+    try:
+        if not isinstance(n, int):
+            raise ValueError("Input must be an integer.")
+        
+        # Special case handling
+        if n < 2:  # This handles both n = 0 and n = 1
+            return 0
 
-    # If n is less than 2, there are no operations
-    # needed as we start with one 'H'
-    if n < 2:
-        return 0
+        operations = 0
 
-    operations = 0
-    current = 1
-
-    # Iterate over possible factors from 2 to n.
-    for i in range(2, n + 1):
-        # While i is a factor of n
-        while n % i == 0:
-            # Add the factor itself (1 Copy + i - 1 Pastes)
-            operations += i
-            n //= i  # Reduce n by the factor
-    # Return operations or 0 if not possible
-    return operations if n == 1 else 0
+        # Iterate over possible factors from 2 to n.
+        for i in range(2, n + 1):
+            # While i is a factor of n
+            while n % i == 0:
+                operations += i  # Add the factor itself (1 Copy + i - 1 Pasts)
+                n //= i  # Reduce n by the factor
+        return operations if n == 1 else 0  # Return operations or 0 if not possible
+        
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 0  # Return 0 or you may choose to raise an error
