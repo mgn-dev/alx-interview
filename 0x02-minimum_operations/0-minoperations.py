@@ -53,6 +53,10 @@ def minOperations(n):
              exactly n 'H' characters, or 0 if it is impossible.
     """
 
+     # Check for valid integer input
+    if not isinstance(n, int) or n < 0:
+        return 0
+
     # If n is less than 2, there are no operations
     # needed as we start with one 'H'
     if n < 2:
