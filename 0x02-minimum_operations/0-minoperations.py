@@ -1,38 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This module contains the implementation of the function minOperations()
 which calculates the minimum number of operations needed to produce
 exactly n H characters in a text file using only the
 operations Copy All and Paste.
-"""
-
-"""
-To solve the problem of determining the minimum number of operations
-needed to produce exactly n H characters using only the operations
-"Copy All" and "Paste", we can use a mathematical approach based
-on the factors of n. The key here is to realize that every time you use
-"Copy All", you effectively double your current characters
-(depending on how many times you "Paste" after that).
-
-Explanation:
-Understanding Operations:
-
-The first action must always be a "Copy All" after you have at
-least one character, which can only be done once at the start.
-Each "Paste" operation adds the current number of characters to
-the total character count.
-Our goal is to determine the minimal sequence of these operations
-that leads us to exactly n H characters.
-Using Factors:
-
-If n is divisible by k, where k is the number of Hs currently in
-the file, that means you can perform "Copy All" when you
-have k Hs, and then perform "Paste" (n/k - 1) times to reach n.
-The optimal way to reach n is by breaking it down into smaller
-factors, which can lead to fewer operations.
-Implementation:
-The basic idea is to find the factors of n and use them
-recursively to count the operations required.
 """
 
 
