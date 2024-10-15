@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This module contains the implementation of the function minOperations()
 which calculates the minimum number of operations needed to produce
