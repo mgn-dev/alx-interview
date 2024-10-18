@@ -7,14 +7,11 @@ operations Copy All and Paste.
 """
 
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
     Calculates the minimum number of operations needed to produce
     exactly n 'H' characters in a text file using only the
     operations 'Copy All' and 'Paste'.
-
-    The function returns the number of operations required or
-    0 if it is impossible to achieve exactly n 'H' characters.
 
     Args:
         n (int): The target number of 'H' characters.
@@ -23,21 +20,20 @@ def minOperations(n):
         int: The minimum number of operations required to obtain
              exactly n 'H' characters, or 0 if it is impossible.
     """
-
-    # If n is less than 2, there are no operations
-    # needed as we start with one 'H'
     if n < 2:
         return 0
 
     operations = 0
     current = 1
 
-    # Iterate over possible factors from 2 to n.
-    for i in range(2, n + 1):
-        # While i is a factor of n
-        while n % i == 0:
-            # Add the factor itself (1 Copy + i - 1 Pastes)
+    # Iterate over possible factors from 2 to the square root of n.
+    for i in range(2, int(n**0.5) + 1):
+        while n % i == 0:  # While i is a factor of n
             operations += i
             n //= i  # Reduce n by the factor
-    # Return operations or 0 if not possible
-    return operations if n == 1 else 0
+
+    # If n is still greater than 1, then it is a prime number
+    if n > 1:
+        operations += n  # Add the prime factor itself
+
+    return operations
