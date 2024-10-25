@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """
-Module to process log entries, track file size and status codes.
-This script reads log entries from standard input, calculates the total file size,
-and counts various HTTP status codes. It prints statistics periodically and upon
-interrupt signals.
+Module to process log entries, track file size and
+status codes. This script reads log entries from
+standard input, calculates the total file size, and
+counts various HTTP status codes. It prints statistics
+periodically and upon interrupt signals.
 """
 
 import sys
@@ -29,6 +30,7 @@ log_pattern = re.compile(
     r'(\S+) - \[(.+?)\] "GET (/projects/260) HTTP/1.1" (\d{3}) (\d+)'
 )
 
+
 # Signal handler for CTRL + C
 def signal_handler(sig, frame):
     """
@@ -37,6 +39,7 @@ def signal_handler(sig, frame):
     """
     print_stats()
     sys.exit(0)
+
 
 # Function to print stats
 def print_stats():
@@ -51,6 +54,7 @@ def print_stats():
         if status_codes_count[code] > 0:
             print(f"{code}: {status_codes_count[code]}")
 
+
 # Register the signal handler
 signal.signal(signal.SIGINT, signal_handler)
 
@@ -64,7 +68,7 @@ try:
 
         if match:
             ip = match.group(1)
-            date = match.group(2)  # The date is captured entirely now
+            date = match.group(2)  # date captured entirely now
             url = match.group(3)
             status_code = match.group(4)
             file_size = match.group(5)
