@@ -68,7 +68,7 @@ try:
 
         if match:
             ip = match.group(1)
-            date = match.group(2)  # date captured entirely now
+            date = match.group(2)
             url = match.group(3)
             status_code = match.group(4)
             file_size = match.group(5)
