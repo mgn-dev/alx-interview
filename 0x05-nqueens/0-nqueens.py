@@ -2,9 +2,9 @@
 import sys
 
 """
-This module solves the N queens problem, which involves placing N 
-non-attacking queens on an N x N chessboard. The program prints all 
-possible solutions, one per line. Usage: nqueens N N must be an integer 
+This module solves the N queens problem, which involves placing N
+non-attacking queens on an N x N chessboard. The program prints all
+possible solutions, one per line. Usage: nqueens N N must be an integer
 greater than or equal to 4.
 """
 
@@ -58,7 +58,7 @@ def solve_nqueens(board, row, solutions):
     for col in range(len(board)):
         if is_safe(board, row, col):
             board[row][col] = 1  # Place queen
-            solve_nqueens(board, row + 1, solutions)  # Recur to place rest of the queens
+            solve_nqueens(board, row + 1, solutions)  # Place rest of queens
             board[row][col] = 0  # Backtrack
 
 
