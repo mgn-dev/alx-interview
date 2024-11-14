@@ -1,44 +1,34 @@
 #!/usr/bin/node
 
+// Import the request module for making HTTP requests
 const request = require('request');
 
-// Get the Movie ID from command line arguments
-const movieId = process.argv[2];
+// Make a request to the Star Wars API to fetch movie details using the movie ID from command line arguments
+request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], function (err, res, body) {
+  // Handle any request errors
+  if (err) throw err;
 
-if (!movieId || isNaN(movieId) || movieId < 1 || movieId > 6) {
-  console.log('Please provide a valid Movie ID (1-6).');
-  process.exit(1);
-}
+  // Parse the response body to extract the characters' URLs
+  const actors = JSON.parse(body).characters;
 
-// Function to fetch characters from the specified movie
-const fetchCharacters = (id) => {
-  // Construct the URL for the films endpoint
-  const url = `https://swapi-api.alx-tools.com/api/films/${id}/`;
+  // Call the exactOrder function to print character names in the order they appear
+  exactOrder(actors, 0);
+});
 
-  // Make a request to the Star Wars API for the movie
-  request(url, { json: true }, (err, res, body) => {
-    if (err) {
-      console.error('Error fetching movie data:', err.message);
-      return;
-    }
+// Function to recursively fetch and print character names in order
+const exactOrder = (actors, x) => {
+  // Base case: if the index 'x' equals the length of the actors array, exit the function
+  if (x === actors.length) return;
 
-    // Check if the movie has characters
-    if (body && body.characters) {
-      // Fetch each character
-      body.characters.forEach(characterUrl => {
-        request(characterUrl, { json: true }, (err, res, characterBody) => {
-          if (err) {
-            console.error('Error fetching character data:', err.message);
-            return;
-          }
-          console.log(characterBody.name);
-        });
-      });
-    } else {
-      console.log('No characters available for this movie.');
-    }
+  // Make a request to fetch details of the character at the current index
+  request(actors[x], function (err, res, body) {
+    // Handle any request errors
+    if (err) throw err;
+
+    // Parse the response body to get the character details and print the character's name
+    console.log(JSON.parse(body).name);
+
+    // Recursively call the exactOrder function for the next character
+    exactOrder(actors, x + 1);
   });
 };
-
-// Call the function to fetch characters
-fetchCharacters(movieId);
