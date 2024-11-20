@@ -26,13 +26,3 @@ def rotate_2d_matrix(matrix):
     # Reverse each row
     for i in range(n):
         matrix[i].reverse()
-
-
-# Test the function
-if __name__ == "__main__":
-    matrix = [[1, 2, 3],
-              [4, 5, 6],
-              [7, 8, 9]]
-
-    rotate_2d_matrix(matrix)
-    print(matrix)
