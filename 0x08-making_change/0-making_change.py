@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Module to calculate the fewest number of coins needed to make a
 specified total.
