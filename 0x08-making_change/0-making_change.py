@@ -27,20 +27,19 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Array to hold the minimum number of coins for each amount
+    # Initialize the dp array with float('inf') to represent
+    # unreachable amounts
     dp = [float('inf')] * (total + 1)
 
-    # Base case: minimum coins needed to make the total of 0 is 0
+    # Base case: zero coins are needed to make a total of 0
     dp[0] = 0
 
     # Iterate through each coin
     for coin in coins:
         for amount in range(coin, total + 1):
-            # Check if the previous amount can be formed
-            if dp[amount - coin] != float('inf'):
-                # Update the minimum coins needed for the current amount
-                dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+            # Update the dp array for current amount if we can make this amount
+            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
-    # If we still have infinity for total, it means it's not possible
-    # to make that amount
+    # If the value at dp[total] is still float('inf'),
+    # it means the total cannot be made with the given coins
     return dp[total] if dp[total] != float('inf') else -1
